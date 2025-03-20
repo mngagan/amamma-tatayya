@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      In Loving Memory | Vudimudi Augusteen Rao & Deena Suseela Rani
+    </title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="floating-dots"></div>
+
+    <main class="container">
+      <header>
+        <h1 class="title">In Loving Memory</h1>
+        <p class="subtitle">A celebration of lives well lived</p>
+      </header>
+
+      <section class="memories-section">
+        <div class="memory-card">
+          <div class="memory-portrait">
+            <div class="portrait-container">
+              <img
+                src="photos/grandfather.jpg"
+                alt="Vudimudi Augusteen Rao"
+                class="placeholder-image"
+              />
+            </div>
+          </div>
+          <h2>Vudimudi Augusteen Rao</h2>
+          <p class="life-dates">August 14, 1936 – December 28, 2013</p>
+          <div class="memory-quote">
+            <p>"A life that touches others goes on forever."</p>
+          </div>
+        </div>
+
+        <div class="memory-card">
+          <div class="memory-portrait">
+            <div class="portrait-container">
+              <img
+                src="photos/grandmother.jpg"
+                alt="Vudimudi Deena Suseela Rani"
+                class="placeholder-image"
+              />
+            </div>
+          </div>
+          <h2>Vudimudi Deena Suseela Rani</h2>
+          <p class="life-dates">June 7, 1947 – December 18, 2024</p>
+          <div class="memory-quote">
+            <p>"To live in hearts we leave behind is not to die."</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="life-journey">
+        <h2 class="section-title">Their Story</h2>
+        <div id="timeline" class="timeline">
+          <!-- Timeline events will be loaded dynamically from timeline.json -->
+          <div class="timeline-loading">
+            <div class="loading-spinner"></div>
+            <p>Loading life events...</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="photo-gallery">
+        <h2 class="section-title">Photo Memories</h2>
+        <div class="gallery-container" id="galleryContainer">
+          <!-- Photos will be loaded dynamically from the photos folder -->
+          <div class="gallery-loading">
+            <div class="loading-spinner"></div>
+            <p>Loading cherished memories...</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="places-section">
+        <h2 class="section-title">Special Places</h2>
+        <div class="places-container">
+          <div class="place-card">
+            <div class="place-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <h3>Family Home</h3>
+            <p>
+              Where countless memories were made and family bonds grew stronger.
+            </p>
+          </div>
+
+          <div class="place-card">
+            <div class="place-icon">
+              <i class="fas fa-pray"></i>
+            </div>
+            <h3>Place of Worship</h3>
+            <p>A sacred space that brought peace and spiritual connection.</p>
+          </div>
+
+          <div class="place-card">
+            <div class="place-icon">
+              <i class="fas fa-tree"></i>
+            </div>
+            <h3>Favorite Garden</h3>
+            <p>Where they found joy in nature's beauty and tranquility.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>Forever in our hearts ♥</p>
+        <p class="copyright">
+          Created with love in memory of Vudimudi Augusteen Rao and Vudimudi
+          Deena Suseela Rani
+        </p>
+      </footer>
+    </main>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
