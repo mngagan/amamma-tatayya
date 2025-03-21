@@ -69,11 +69,24 @@ function loadTimelineData() {
                         timelineItem.classList.add('even');
                     }
                     
+                    // Check if this is a passing/death event
+                    const isPassingEvent = event.title.toLowerCase().includes('passing') || 
+                                          event.description.toLowerCase().includes('passing') ||
+                                          event.title.toLowerCase().includes('death');
+                    
+                    // Calculate days since for passing events
+                    let daysSinceHTML = '';
+                    if (isPassingEvent && event.date) {
+                        const daysSince = calculateDaysSince(event.date);
+                        daysSinceHTML = `<div class="days-since-timeline"><span>${daysSince}</span> since</div>`;
+                    }
+                    
                     timelineItem.innerHTML = `
                         <div class="timeline-date">${event.date}</div>
                         <div class="timeline-content">
                             <h3>${event.title}</h3>
                             <p>${event.description}</p>
+                            ${daysSinceHTML}
                         </div>
                     `;
                     
@@ -359,52 +372,29 @@ function createFloatingDots() {
     // Clear any existing content
     dotsContainer.innerHTML = '';
     
-    // Number of dots to create
-    const numberOfDots = 30;
+    // Increase number of dots
+    const numberOfDots = 50;
+    
+    // Predefined animation names
+    const animations = ['float-slow', 'float-medium', 'float-fast'];
     
     // Create dots
     for (let i = 0; i < numberOfDots; i++) {
         const dot = document.createElement('div');
         dot.className = 'dot';
         
-        // Random size between 2-5px
-        const size = Math.floor(Math.random() * 4) + 2;
+        // Random size between 2-4px
+        const size = Math.floor(Math.random() * 3) + 2;
         
         // Random position
         const posX = Math.random() * 100;
         const posY = Math.random() * 100;
         
-        // Generate random animation path points (4 points for a complete cycle)
-        const path = [];
-        for (let p = 0; p < 4; p++) {
-            // Random distance 30-100px
-            const distance = Math.floor(Math.random() * 70) + 30;
-            // Random angle in radians
-            const angle = Math.random() * Math.PI * 2;
-            // Convert to x,y coordinates
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            path.push({ x, y });
-        }
+        // Pick random animation
+        const animationName = animations[Math.floor(Math.random() * animations.length)];
         
-        // Random speed (shorter duration = faster movement)
-        const duration = Math.random() * 30 + 15; // 15-45 seconds
-        
-        // Define keyframes as a string
-        const keyframes = `
-            @keyframes float${i} {
-                0% { transform: translate(0, 0); }
-                25% { transform: translate(${path[0].x}px, ${path[0].y}px); }
-                50% { transform: translate(${path[1].x}px, ${path[1].y}px); }
-                75% { transform: translate(${path[2].x}px, ${path[2].y}px); }
-                100% { transform: translate(0, 0); }
-            }
-        `;
-        
-        // Create and append style element with keyframes
-        const style = document.createElement('style');
-        style.textContent = keyframes;
-        document.head.appendChild(style);
+        // Random duration (30-60s)
+        const duration = Math.floor(Math.random() * 30) + 30;
         
         // Style the dot
         dot.style.cssText = `
@@ -416,10 +406,74 @@ function createFloatingDots() {
             top: ${posY}%;
             left: ${posX}%;
             opacity: ${Math.random() * 0.3 + 0.2};
-            animation: float${i} ${duration}s infinite ease-in-out;
-            animation-delay: -${Math.random() * 5}s;
+            animation: ${animationName} ${duration}s infinite ease-in-out;
+            animation-delay: -${Math.random() * 10}s;
         `;
         
         dotsContainer.appendChild(dot);
     }
+}
+
+/**
+ * Calculate days between a date and today
+ * @param {string} dateString - Date in format "YYYY-MM-DD" or "Month DD, YYYY"
+ * @return {string} - Formatted time duration (e.g. "3 years, 6 months, 12 days")
+ */
+function calculateDaysSince(dateString) {
+    // Parse the date string
+    let date;
+    if (dateString.includes('-')) {
+        // Format: YYYY-MM-DD
+        date = new Date(dateString);
+    } else {
+        // Format: Month DD, YYYY
+        date = new Date(dateString);
+    }
+    
+    // Current date
+    const today = new Date();
+    
+    // Calculate difference in milliseconds
+    const diffTime = Math.abs(today - date);
+    
+    // Convert to days (for fallback)
+    const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    // Calculate years, months, and days
+    let years = today.getFullYear() - date.getFullYear();
+    let months = today.getMonth() - date.getMonth();
+    let days = today.getDate() - date.getDate();
+    
+    // Adjust if days are negative
+    if (days < 0) {
+        // Get the last day of the previous month
+        const lastDayOfLastMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        days += lastDayOfLastMonth;
+        months--;
+    }
+    
+    // Adjust if months are negative
+    if (months < 0) {
+        months += 12;
+        years--;
+    }
+    
+    // Format the result
+    let result = '';
+    
+    if (years > 0) {
+        result += `${years} ${years === 1 ? 'year' : 'years'}`;
+    }
+    
+    if (months > 0) {
+        if (result) result += ', ';
+        result += `${months} ${months === 1 ? 'month' : 'months'}`;
+    }
+    
+    if (days > 0 || (years === 0 && months === 0)) {
+        if (result) result += ', ';
+        result += `${days} ${days === 1 ? 'day' : 'days'}`;
+    }
+    
+    return result || totalDays.toString();
 } 

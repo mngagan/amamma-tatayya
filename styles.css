@@ -115,6 +115,33 @@ h1, h2, h3, h4 {
     content: none;
 }
 
+/* Predefined dot animations */
+@keyframes float-slow {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(30px, -20px); }
+    50% { transform: translate(-25px, 15px); }
+    75% { transform: translate(20px, 25px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes float-medium {
+    0% { transform: translate(0, 0); }
+    30% { transform: translate(-40px, -15px); }
+    60% { transform: translate(15px, 30px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes float-fast {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(25px, -25px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Animation durations */
+.dot:nth-of-type(3n+1) { animation-duration: 45s; }
+.dot:nth-of-type(3n+2) { animation-duration: 30s; }
+.dot:nth-of-type(3n+3) { animation-duration: 60s; }
+
 /* Header Styles */
 header {
     text-align: center;
@@ -200,6 +227,19 @@ header {
     font-size: 1.2rem;
     max-width: 80%;
     margin: 0 auto;
+}
+
+/* Days since counter */
+.days-since {
+    margin-top: 1.5rem;
+    color: var(--light-text);
+    font-size: 0.95rem;
+}
+
+.days-since span {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 1.1rem;
 }
 
 /* Timeline Styles */
@@ -309,6 +349,23 @@ header {
 .timeline-content h3 {
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* Days since in timeline */
+.days-since-timeline {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--light-text);
+    font-style: italic;
+}
+
+.days-since-timeline span {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 1rem;
+    font-style: normal;
 }
 
 /* Photo Gallery Styles */
