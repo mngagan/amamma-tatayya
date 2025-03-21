@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Create floating dots
     createFloatingDots();
+    
+    // Initialize parallax effect for dots
+    initParallaxDots();
 });
 
 /**
@@ -476,4 +479,28 @@ function calculateDaysSince(dateString) {
     }
     
     return result || totalDays.toString();
+}
+
+/**
+ * Initialize parallax effect for the floating dots
+ */
+function initParallaxDots() {
+    const dotsContainer = document.querySelector('.floating-dots');
+    if (!dotsContainer) return;
+    
+    // Set initial position
+    dotsContainer.style.transform = 'translateY(0)';
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', function() {
+        // Get scroll position
+        const scrollY = window.scrollY;
+        
+        // Move dots in opposite direction of scroll (negative value)
+        // The -0.3 value means dots move at 30% of the scroll speed in opposite direction
+        const parallaxOffset = scrollY * -0.3;
+        
+        // Apply transform with some easing
+        dotsContainer.style.transform = `translateY(${parallaxOffset}px)`;
+    });
 } 
