@@ -618,7 +618,7 @@ header {
 /* Footer Styles */
 footer {
     text-align: center;
-    padding: 3rem 0 2rem;
+    padding: 3rem 0 0 0;
     margin-top: 3rem;
     color: var(--light-text);
     position: relative;
@@ -817,4 +817,27 @@ footer p {
     color: var(--light-text);
     text-align: center;
     width: 100%;
+}
+
+/* GitHub Link Styles */
+.github-link-container {
+    margin-top: 1rem;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.github-link:hover {
+    transform: translateY(-2px);
+    color: #000;
+}
+
+.github-link i {
+    font-size: 20px;
 } 

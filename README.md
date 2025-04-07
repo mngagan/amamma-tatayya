@@ -1,16 +1,19 @@
-# Memorial Website for Vudimudi Augusteen Rao & Deena Suseela Rani
+# Memorial Website for Amamma & Tatayya
 
-A modern, respectful memorial website designed to honor the memory of Vudimudi Augusteen Rao and Vudimudi Deena Suseela Rani. This site is intended to be accessed via a QR code engraved on a tombstone.
+A modern, respectful memorial website designed to honor the memory of our beloved grandparents. This site serves as a digital tribute to preserve and share their legacy with future generations.
+
+🌐 **Live Website**: [https://mngagan.github.io/amamma-tatayya/](https://mngagan.github.io/amamma-tatayya/)
 
 ## Features
 
 - Clean, modern design with subtle animations
 - Mobile-friendly responsive layout
-- Timeline of important life events
+- Timeline of important life events and milestones
 - Photo gallery with lightbox viewing
-- Special places section
-- QR code generation for the memorial page
-- Floating dots background animation inspired by memories.com
+- Special places and memories section
+- QR code generation for easy access to the memorial page
+- Floating dots background animation representing the stars in heaven
+- Bilingual support (English and Telugu)
 
 ## Setup Instructions
 
@@ -18,8 +21,9 @@ A modern, respectful memorial website designed to honor the memory of Vudimudi A
 
 You can personalize the website by editing the following files:
 
-- **index.html**: Update the timeline events, quotes, and other personal information
-- **script.js**: Update the photo gallery with your own images
+- **index.html**: Update the timeline events, quotes, and personal information
+- **script.js**: Customize the photo gallery and animations
+- **timeline.json**: Add significant life events and milestones
 
 ### 2. Add Photos
 
@@ -27,13 +31,18 @@ You can personalize the website by editing the following files:
 2. The website will automatically detect images with the following naming patterns:
    - `photo1.jpg`, `photo2.jpg`, etc.
    - Simple numbers like `1.jpg`, `2.jpg`, etc.
-3. Alternatively and preferably, edit `photos/photos.json` to list all your photos
+3. For better organization, edit `photos/photos.json` to list all your photos with descriptions
 4. Supported file formats: .jpg, .jpeg, .png, .gif
 
 ### 3. Customize Timeline
 
 1. Edit the `timeline.json` file to add or modify life events
-2. Keep events in chronological order for the best presentation
+2. Include important milestones such as:
+   - Birth and early life
+   - Marriage and family life
+   - Career achievements
+   - Special moments with grandchildren
+   - Community contributions
 3. See `README-timeline.txt` for detailed instructions and formatting
 
 ### 4. GitHub Pages Deployment
@@ -47,7 +56,7 @@ To deploy this site to GitHub Pages:
 5. Select the main branch as the source
 6. Click Save
 
-Your site will be published at `https://yourusername.github.io/repository-name/`
+Your site will be published at `https://yourusername.github.io/amamma-tatayya/`
 
 ### 5. QR Code
 
@@ -79,19 +88,21 @@ You can change the color scheme by editing the CSS variables at the top of `styl
 
 ### Timeline Events
 
-Edit the timeline events in `index.html` by modifying the `timeline-item` sections:
+Edit the timeline events in `timeline.json` to include significant moments from their lives:
 
-```html
-<div class="timeline-item">
-  <div class="timeline-date">Date</div>
-  <div class="timeline-content">
-    <h3>Event Title</h3>
-    <p>Event description</p>
-  </div>
-</div>
+```json
+{
+  "events": [
+    {
+      "date": "YYYY-MM-DD",
+      "title": "Event Title",
+      "description": "Event description"
+    }
+  ]
+}
 ```
 
-### Special Places
+### Special Places and Memories
 
 Customize the special places section by editing the `place-card` elements in `index.html`:
 
@@ -117,4 +128,4 @@ This website is compatible with:
 
 ## License
 
-This project is made with love in memory of Vudimudi Augusteen Rao and Vudimudi Deena Suseela Rani.
+This project is made with love in memory of our beloved Amamma and Tatayya, whose legacy continues to inspire us every day.
