@@ -1,16 +1,8 @@
 {
   "photos": [
     {
-      "src": "1.jpg",
-      "caption": "Family gathering, 1998"
-    },
-    {
-      "src": "2.jpg",
-      "caption": "Birthday celebration"
-    },
-    {
-      "src": "3.jpg",
-      "caption": "Birthday celebration"
+      // "src": "4.jpeg"
+      // "caption": "Family gathering, 1998"
     }
   ]
 }

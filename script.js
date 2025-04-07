@@ -375,19 +375,68 @@ function createFloatingDots() {
     // Clear any existing content
     dotsContainer.innerHTML = '';
     
-    // Increase number of dots
-    const numberOfDots = 50;
+    // Create SVG background layer
+    const svgLayer = document.createElement('div');
+    svgLayer.className = 'svg-background';
     
-    // Predefined animation names
-    const animations = ['float-slow', 'float-medium', 'float-fast'];
+    // Create SVG elements
+    for (let i = 0; i < 25; i++) {
+        const svgElement = document.createElement('div');
+        svgElement.className = 'earring-svg';
+        
+        // Random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        
+        // Random size (between 30-50px)
+        const size = Math.floor(Math.random() * 20) + 30;
+        
+        // Random rotation (0-360 degrees)
+        const rotation = Math.random() * 360;
+        
+        // Random animation duration (60-120s)
+        const duration = Math.floor(Math.random() * 60) + 60;
+        
+        // Style the SVG element
+        svgElement.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            top: ${posY}%;
+            left: ${posX}%;
+            transform: rotate(${rotation}deg);
+            background-image: url('photos/earRing.svg');
+            animation: float-slow ${duration}s infinite ease-in-out;
+            animation-delay: -${Math.random() * 30}s;
+        `;
+        
+        svgLayer.appendChild(svgElement);
+    }
+    
+    // Add SVG layer to container
+    dotsContainer.appendChild(svgLayer);
+    
+    // Create dots layer
+    const dotsLayer = document.createElement('div');
+    dotsLayer.className = 'dots-layer';
+    dotsLayer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    `;
     
     // Create dots
+    const numberOfDots = 40;
+    const animations = ['float-slow', 'float-medium', 'float-fast'];
+    
     for (let i = 0; i < numberOfDots; i++) {
         const dot = document.createElement('div');
         dot.className = 'dot';
         
         // Random size between 2-4px
-        const size = Math.floor(Math.random() * 3) + 2;
+        const size = Math.floor(Math.random() * 2) + 2;
         
         // Random position
         const posX = Math.random() * 100;
@@ -395,26 +444,22 @@ function createFloatingDots() {
         
         // Pick random animation
         const animationName = animations[Math.floor(Math.random() * animations.length)];
-        
-        // Random duration (30-60s)
         const duration = Math.floor(Math.random() * 30) + 30;
         
-        // Style the dot
         dot.style.cssText = `
-            position: absolute;
             width: ${size}px;
             height: ${size}px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
             top: ${posY}%;
             left: ${posX}%;
-            opacity: ${Math.random() * 0.3 + 0.2};
             animation: ${animationName} ${duration}s infinite ease-in-out;
             animation-delay: -${Math.random() * 10}s;
         `;
         
-        dotsContainer.appendChild(dot);
+        dotsLayer.appendChild(dot);
     }
+    
+    // Add dots layer to container
+    dotsContainer.appendChild(dotsLayer);
 }
 
 /**
@@ -502,5 +547,14 @@ function initParallaxDots() {
         
         // Apply transform with some easing
         dotsContainer.style.transform = `translateY(${parallaxOffset}px)`;
+        
+        // Also apply a subtle rotation to the SVG elements for more dynamic effect
+        const svgElements = document.querySelectorAll('.earring-svg');
+        svgElements.forEach((svg, index) => {
+            // Calculate a unique rotation based on scroll position and element index
+            const rotationFactor = 0.01 + (index % 3) * 0.005;
+            const rotation = scrollY * rotationFactor;
+            svg.style.transform = `rotate(${rotation}deg)`;
+        });
     });
 } 
