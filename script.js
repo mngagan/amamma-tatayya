@@ -139,7 +139,7 @@ function loadPhotoGallery() {
             if (data.photos && data.photos.length > 0) {
                 // Create photo elements
                 data.photos.forEach((photo, index) => {
-                    createGalleryItem(photo.src, photo.caption || 'Family memory', galleryContainer);
+                    createGalleryItem(photo.src, photo.caption || '', galleryContainer);
                 });
             } else {
                 showNoPhotosMessage(galleryContainer);
